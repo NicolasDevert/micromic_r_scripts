@@ -1,0 +1,13 @@
+data/
+*.pdf
+*.html
+*.RData
+*.Rhistory
+*.Rproj.user
+*.Rproj
+*.tex
+serveur.R
+style.css
+tempfile
+truc.R
+errorbar_test.R
