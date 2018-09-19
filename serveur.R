@@ -18,7 +18,7 @@ rmarkdown::render('rmarkDown_test.Rmd', output_file = paste('rmarkDown_test.', S
 #query <- "https://147.100.179.81/micromic/maintenancelog/"
 #putData <- POST(url=query, add_headers(Authorization="token !!!!!!!!!!!!!!!!!!!!!!!!!!!"), body=list(comment=txt))
 query <- "https://147.100.179.81/micromic/dailyloglists/"
-postData <- POST(url=query, add_headers(Authorization="token 2bf797f3b9bcd224c2aa7fff58d1efe7f03a6d4c"), body=list(name=paste(Sys.time()), upload=upload_file(paste('rmarkDown_test.',Sys.Date(),'.html', sep=''))))
+postData <- POST(url=query, add_headers(Authorization="token !!!!!!!!!!!!!!!!!!!!!!!"), body=list(name=paste(Sys.time()), upload=upload_file(paste('rmarkDown_test.',Sys.Date(),'.html', sep=''))))
 fromJSON(content(postData,type="text"))
 #getwd()
 #setwd("C:\\Users\\ndevert\\Documents\\INRA\\repo\\R\\Micromic_Campbell_Datalogger")
