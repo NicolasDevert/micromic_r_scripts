@@ -5,7 +5,7 @@ library(stringr)
 
 Sys.setenv(TZ='UTC')
 setwd("C:/repo/R/Micromic_Campbell_Datalogger/data/")
-dateIwant <- as.POSIXct(Sys.Date()-46)                                                    #la date qui correspond au photo que je veux analyser
+dateIwant <- as.POSIXct(Sys.Date()-49)                                                    #la date qui correspond au photo que je veux analyser
 strftime(dateIwant,format = "%Y%m%d")                                         #converti la date en string au bon format
 searchString<-strftime(dateIwant,format = "%Y%m%d")                         #crÃ©e l'objet serachString 
 fileList<-list.files(pattern = searchString,recursive = 1)                    #fileList contient toutes les photo qui ont "searchString" 
@@ -43,18 +43,18 @@ setkey(campbellData, "TIMESTAMP")
 setkey(flirPicture, "V4")
 
 minutesOfTimestamp <- str_sub(flirPicture$V4,-2,-1)
-minutesOfTimestamp <- mean(as.numeric(minutesOfTimestamp))       #a combien de minutes se répete le TIMESTAMP 
+minutesOfTimestamp <- mean(as.numeric(minutesOfTimestamp))       #a combien de minutes se r?pete le TIMESTAMP 
 
 if (minutesOfTimestamp>=30) {
   rollValue <- -30
-}                                              #si ça se repete entre 0 et 29 minutes, je fais correspondre flirPicture a la valeur inferieur de campbell
-                                               #si ça se repete entre 30 et 59 minutes, je fais correspondre flirPicture a la valeur superieur de campbell
+}                                              #si ?a se repete entre 0 et 29 minutes, je fais correspondre flirPicture a la valeur inferieur de campbell
+                                               #si ?a se repete entre 30 et 59 minutes, je fais correspondre flirPicture a la valeur superieur de campbell
 if (minutesOfTimestamp<30) {
   rollValue <- 30
 }
 
 dataroll <- campbellData[flirPicture, roll = rollValue]
 dataroll$flirFile <- paste0(dataroll$V1,"_",dataroll$V2,"_",dataroll$V3,".tiff")
-dataroll <- select(dataroll,flirFile,TIMESTAMP,AirTC_Avg,RH_Avg)                     #crée une colone flirFile
+dataroll <- select(dataroll,flirFile,TIMESTAMP,AirTC_Avg,RH_Avg)                     #cr?e une colone flirFile
 
 
